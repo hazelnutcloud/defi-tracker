@@ -1,0 +1,6 @@
+[workspace]
+
+members = [
+    "fantom-tracker",
+    "tracker-bot",
+]
