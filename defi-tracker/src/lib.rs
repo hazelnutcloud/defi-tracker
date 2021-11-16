@@ -5,10 +5,9 @@ use ethers::{
     prelude::{Address, Contract, Http, *},
 };
 use std::{collections::HashMap, fmt};
-// use serde_json;
 
 pub mod ethers_helpers {
-    use crate::*;
+    use super::*;
 
     #[derive(Debug, PartialEq)]
     pub struct Unit {
@@ -81,17 +80,6 @@ pub mod ethers_helpers {
         Provider::<Http>::try_from(rpc_url).unwrap()
     }
 
-    pub fn get_contract(
-        address: &str,
-        abi: &str,
-        provider: Provider<Http>,
-    ) -> Result<Contract<Provider<Http>>> {
-        let address: Address = address.parse().context("error parsing contract address")?;
-        let abi: Abi = serde_json::from_str(abi).context("error parsing contract ABI")?;
-
-        Ok(Contract::new(address, abi, provider))
-    }
-
     pub fn u256_to_unit(num: U256, decimal_places: usize) -> Unit {
         let dividend: U256 = U256::from(10).pow(U256::from(decimal_places));
         let (integer, point) = num.div_mod(dividend);
@@ -127,7 +115,6 @@ pub mod ethers_helpers {
 }
 
 pub mod fantom;
-pub use fantom::tomb_finance;
 
 #[cfg(test)]
 mod tests {

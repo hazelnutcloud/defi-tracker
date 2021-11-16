@@ -1,4 +1,3 @@
-
 #[tokio::main]
 async fn main() {
     match tracker_bot::run().await {

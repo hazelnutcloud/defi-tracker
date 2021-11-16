@@ -1,6 +1,6 @@
 [workspace]
 
 members = [
-    "fantom-tracker",
+    "defi-tracker",
     "tracker-bot",
 ]
